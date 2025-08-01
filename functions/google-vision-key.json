@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "deal-me-up",
+  "private_key_id": "85487d7bd4444c0bc68cd40d42596dc1fa4f0feb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC/c2Mfue4KSfWt\nHig60X2khIbbVL6ZW63QQl/nR79buVzMtiUXFW/FGotckCHN0Ff1sstj3FciI0sK\nnkA0czuI+C9Q+W0zaRYR8HD3kIab4om+C1g3f2GMIftf/gmtzX47zsQFjoV8KAjz\nK74sOtBhq9BVmmNVjSz8nfXVto+qBnkGWymyHkhTSua4QkoDA6vprcD6kMpX1FpK\nAdEpDnyZ+olh7QKQoL1X4B242Y2gdpO2x4yt5nLyL3axz4g9oTHdb1vKB82LMTUs\nW94HdFZgLIin9NY2Unm5a79wYhDZwlJ/LAV6Zobo9Tc3JpSnOMN6u82IdpaJ69Ac\n9qst1vCjAgMBAAECggEAPzmQ86pIZVd1bb121a3XS1yE2KwM4cJ4DT3ORCfalyUI\n84X3i78FkVcpzODAeSKj2b05E/pxQBHdt1z5oRipAZvMrHYizQaYRkZcWDV/br2K\ndZtzf6hug4O5a0MO2TnyxTeMXrVpec4S3pOEk0C9DnRaMdrxkRA1WhukUvaeTSyQ\n9XGrPumkqQ+YHma3xCLCo+ZtgLZjaLKSJNIt1pLn2JuCMAObcaq4er+Je0B/ccKH\n60Txa/Gwt2c6wjkadNfOSAEfuFgpv2ahkmFXItE14gVgujurx0nCkFEVc99VPcNk\n+/mSwKyREI8opkm7+tx2bnZnqJJJobVq1q8Hw5NRIQKBgQD24pzPYKoPLmq1ib1P\n5Z2l4s1C+0bgtnVfgxZtfK0r/heXXCn6mBTU/OfEXBXeLc6t/xWpNwFqrdcKppLK\n4rvzzoQL68E19hCr9dg2mI1uIP1tPYpTBYZOR3L7NY3Y1R8sirrNWeoTRd7xbkGL\nCafFbPJHm8XKOfRhL5RBeLoCMQKBgQDGhNi1vn0WcXwTQZOnab53Z7ntWOOw45MD\nob1DU2woDjDofportni+ekSCQVvD9IHcfmyB4dtQPbjhRNS2qS8VxfggE41D4Pc4\nVLN+UO/RRgSHNi10Yc7DCS1Yl74rZWu5S7FtL403K1Woc4BpN3WPIP+Qs0/o+O7s\nGuOz7ER3EwKBgQDnYi+xNFlt7QTZq4QgE4WS6WOS+UnOZXLP1133szfh2TxnAVve\nnxY3H+hf4iYkmy3vaPj2JLVRNCgstT0ypRmeQNkFCymD12B8qebAFG3I32ZlMZ4o\nfS8IwnIC+og8xlF3P3Yf67sz4PI3uCv5kU0J/Td84YOYKoTdaOg8DFfYoQKBgEjp\nJcaqbbq+d3mDDj3ggonMWOcpTIb9LlOZJbAChai4fZIGXY1MeVBMC7ljU9bGiKN4\n81VIpIn2AV8LLqzfumFe0mDFjY6uo13XDg2IoGvWMXePmGY0PgI37qWpJbk+iLAH\ncuTNICpxCgbSVQlPyyeEURjOIr1IIEgrIBJG5mZtAoGBAM9BmbySz9/7JRIZ1Zt3\n1aYEJytZSEtqbTUNKkwvqO//410vAmlIvjthDcGYSSqykllKwOojd5J5nF9FQYdT\nWD+g3dp8SL6aUW2PGXwb/OzHSzu5HdfGfkSF+oSWUtPNSnrVj7bh6RzhKI7bQFS5\nyqHqQR+4BBpZ9LTX9k1DezSu\n-----END PRIVATE KEY-----\n",
+  "client_email": "deals-vision@deal-me-up.iam.gserviceaccount.com",
+  "client_id": "116915179289274716832",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/deals-vision%40deal-me-up.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

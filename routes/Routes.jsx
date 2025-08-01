@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '../lib/AuthContext';
 import Login from '../extras/Login';
 import SignUp from '../extras/SignUp';
+import GettingStarted from '../extras/GettingStarted';
 import Offerings from '../pages/Offerings';
 import User from '../pages/User';
 import Nav from '../navigation/Nav';
@@ -12,7 +13,7 @@ import { View } from 'react-native';
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
-  const { user, loading } = useAuth();
+  const { user, loading, isNewUser } = useAuth();
   const [activeTab, setActiveTab] = React.useState('Offerings');
 
   if (loading) {
@@ -30,16 +31,22 @@ export default function Routes() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {user ? (
-          <Stack.Screen name="MainApp" children={renderMainApp} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {user ? (
+        isNewUser ? (
+          <Stack.Screen name="GettingStarted" component={GettingStarted} />
         ) : (
           <>
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="SignUp" component={SignUp} />
+            <Stack.Screen name="MainApp" children={renderMainApp} />
           </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+        )
+      ) : (
+        <>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="SignUp" component={SignUp} />
+        </>
+      )}
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 }

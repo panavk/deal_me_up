@@ -1,6 +1,7 @@
+<!--I don't know if this file is needed, but I'm keeping it here for now-->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
+<plist version="1.0"> 
 <dict>
 	<key>API_KEY</key>
 	<string>AIzaSyAq4iPQgo3smrtOrm_BImwMJsOUpJADQdY</string>

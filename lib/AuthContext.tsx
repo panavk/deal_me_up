@@ -1,17 +1,21 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged, User, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
-import app from './firebase'; // your firebase.ts
+import { User, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
+import { auth } from './firebase'; // Use the shared auth instance
 import * as Google from 'expo-auth-session/providers/google';
+import { makeRedirectUri } from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
+import { createUserDocument, getUserDocument} from '../util/UserDB';
 
 WebBrowser.maybeCompleteAuthSession();
 
 type AuthContextType = {
   user: User | null;
   loading: boolean;
+  isNewUser: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  setIsNewUser: (newVal: boolean) => void;
   loginWithGoogle: () => Promise<void>;
 };
 
@@ -20,43 +24,57 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isNewUser, setIsNewUser] = useState(false);
 
   // Google Auth Request
-  const [, response, promptAsync] = Google.useAuthRequest({
-    clientId: 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com', // <-- use this!
-    // ...other config
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    clientId: '879690137107-4fknd9f6ahaeh7tf61apqc2eptsgkf15.apps.googleusercontent.com',
+    androidClientId: '879690137107-q1v80agajmdbblqppdjmk3h652ttg8vk.apps.googleusercontent.com',
+    iosClientId: '879690137107-9dtor7agh47gkenkqqd2vciglkuohhog.apps.googleusercontent.com',
   });
 
   useEffect(() => {
-    const auth = getAuth(app);
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+    if (request) {
+      console.log('Expo redirect URI:', request.redirectUri);
+    }
+  }, [request]);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (firebaseUser) => {
       setUser(firebaseUser);
+
+      if (firebaseUser) {
+        // Check if the user has completed onboarding
+        const userDoc = await getUserDocument(firebaseUser.email);
+        setIsNewUser(!userDoc?.onboardingComplete);
+      } else {
+        setIsNewUser(false);
+      }
+
       setLoading(false);
     });
-    return unsubscribe;
+
+    return () => unsubscribe();
   }, []);
 
   useEffect(() => {
     if (response?.type === 'success') {
-      const { id_token } = response.params;
-      const auth = getAuth(app);
-      const credential = GoogleAuthProvider.credential(id_token);
+      const credential = GoogleAuthProvider.credential(response.authentication.accessToken);
       signInWithCredential(auth, credential);
     }
   }, [response]);
 
   const login = async (email: string, password: string) => {
-    const auth = getAuth(app);
     await signInWithEmailAndPassword(auth, email, password);
   };
 
   const register = async (email: string, password: string) => {
-    const auth = getAuth(app);
+    setIsNewUser(true);
+    await createUserDocument(email);
     await createUserWithEmailAndPassword(auth, email, password);
   };
 
   const logout = async () => {
-    const auth = getAuth(app);
     await signOut(auth);
   };
 
@@ -65,7 +83,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, loginWithGoogle }}>
+    <AuthContext.Provider value={{ user, loading, isNewUser, setIsNewUser, login, register, logout, loginWithGoogle }}>
       {children}
     </AuthContext.Provider>
   );
